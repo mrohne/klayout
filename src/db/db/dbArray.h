@@ -1203,12 +1203,11 @@ struct array_iterator
   typedef Trans trans_type;
   typedef typename compute_result_trans<coord_type, trans_type>::result_trans result_type;
   //  dummy definitions to satisfy iterator traits (without making much sense):
-  typedef result_type reference;
+  typedef int difference_type;
   typedef result_type value_type;
-  typedef void pointer_type;
-  typedef void difference_type;
-  typedef void pointer;
-  typedef void iterator_category;
+  typedef const result_type& reference;
+  typedef const result_type* pointer;
+  typedef struct std::input_iterator_tag iterator_category;
 
   /**
    *  @brief The default constructor

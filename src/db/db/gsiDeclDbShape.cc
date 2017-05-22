@@ -950,11 +950,13 @@ namespace
 template <class I, class T>
 struct ConvertingIteratorWrapper
 {
-  typedef void difference_type;
-  typedef T value_type;
-  typedef T reference;
-  typedef void pointer;
-  typedef void iterator_category;
+  //  Dummy declarations
+  typedef T result_type;
+  typedef int difference_type;
+  typedef result_type value_type;
+  typedef const result_type& reference;
+  typedef const result_type* pointer;
+  typedef struct std::input_iterator_tag iterator_category;
 
   ConvertingIteratorWrapper (double dbu, const I &b, const I &e)
     : m_b (b), m_e (e), m_dbu (dbu)
@@ -969,7 +971,7 @@ struct ConvertingIteratorWrapper
 
   reference operator* () const
   {
-    return *m_b * m_dbu;
+    return *m_b * m_dbu; // warning: returning reference to local temporary object [-Wreturn-stack-address]
   }
 
   bool at_end () const
@@ -985,11 +987,13 @@ private:
 template <class I, class T>
 struct ConvertingFreeIteratorWrapper
 {
-  typedef void difference_type;
-  typedef T value_type;
-  typedef T reference;
-  typedef void pointer;
-  typedef void iterator_category;
+  //  Dummy declarations
+  typedef T result_type;
+  typedef int difference_type;
+  typedef result_type value_type;
+  typedef const result_type& reference;
+  typedef const result_type* pointer;
+  typedef struct std::input_iterator_tag iterator_category;
 
   ConvertingFreeIteratorWrapper (double dbu, const I &b)
     : m_b (b), m_dbu (dbu)
@@ -1004,7 +1008,7 @@ struct ConvertingFreeIteratorWrapper
 
   reference operator* () const
   {
-    return *m_b * m_dbu;
+    return *m_b * m_dbu; // warning: returning reference to local temporary object [-Wreturn-stack-address]
   }
 
   bool at_end () const
