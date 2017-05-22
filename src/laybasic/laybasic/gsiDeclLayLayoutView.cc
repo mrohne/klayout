@@ -317,12 +317,14 @@ namespace {
   class LayerPropertiesConstIteratorWrapper
   {
   public:
-    typedef lay::LayerPropertiesNodeRef value_type;
-    typedef lay::LayerPropertiesNodeRef reference;
     //  Dummy declarations required for std::iterator_traits
-    typedef void iterator_category;
-    typedef void difference_type;
-    typedef void pointer;
+    typedef lay::LayerPropertiesNodeRef result_type;
+    typedef int difference_type;
+    typedef result_type value_type;
+    typedef const result_type& reference;
+    typedef const result_type* pointer;
+    typedef struct std::input_iterator_tag iterator_category;
+
 
     LayerPropertiesConstIteratorWrapper (const lay::LayerPropertiesConstIterator &iter)
       : m_iter (iter)
@@ -332,7 +334,7 @@ namespace {
 
     reference operator* () const
     {
-      return lay::LayerPropertiesNodeRef (&const_cast<LayerPropertiesConstIteratorWrapper *> (this)->m_iter);
+      return lay::LayerPropertiesNodeRef (&const_cast<LayerPropertiesConstIteratorWrapper *> (this)->m_iter); // warning: returning reference to local temporary object [-Wreturn-stack-address]
     }
 
     bool at_end () const
