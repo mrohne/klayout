@@ -1,4 +1,14 @@
+# Building on macOS
+This fork of https://github.com/klayoutmatthias/klayout is meant to provide a stable build on recent macOS, supported by homebrew. There are three complications to this goal:
+
+* Toolkit: local/qt5 - Homebrew doesn't provide Qt4, only Qt5 and built with clang
+
+* Compiler: local/clang - Apple/LLVM clang++ seem to have a sligthly different implementation of the C++ standard
+
+* Application bundle: local/build - Qt5 macdeployqt doesn't quite cut it
+
 # klayout
+
 
 This repository will hold the main sources for the KLayout project.
 
