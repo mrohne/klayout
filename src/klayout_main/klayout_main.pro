@@ -20,3 +20,9 @@ RESOURCES = \
 win32 {
   RC_FILE = $$PWD/klayout.rc
 }
+
+osx {
+    LIBS += -lz
+    LIBS += -framework CoreFoundation
+}
+
