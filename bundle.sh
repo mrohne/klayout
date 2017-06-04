@@ -1,5 +1,5 @@
 bundle=$1
-oldpath=/usr/local/Cellar/qt/5.8.0_2/lib/
+oldpath=/usr/local/Cellar/qt/5.9.0/lib/
 newpath=@executable_path/../Frameworks/
 macdeployqt $1 -no-strip -libpath=.
 find $1 -type f | 
