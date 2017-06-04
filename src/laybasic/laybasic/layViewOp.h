@@ -37,6 +37,7 @@ typedef unsigned int color_t;
 const unsigned int wordlen  = 32;
 const unsigned int wordbits = 5;
 const unsigned int wordones = 0xffffffff;
+const unsigned int highones = 0xff000000;
 
 /**
  *  @brief The operator that decribes how a bitmap is combined with the others on the stack

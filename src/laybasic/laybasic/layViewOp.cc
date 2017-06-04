@@ -47,9 +47,9 @@ ViewOp::ViewOp (color_t color, Mode mode, unsigned int line_style_index, unsigne
 void
 ViewOp::init (color_t color, Mode mode)
 {
-  m_or  = (mode == Copy || mode == Or)  ? color : 0;
+  m_or  = (mode == Copy || mode == Or)  ? color : highones;
   m_and = (mode == Copy || mode == And) ? color : wordones;
-  m_xor = (mode == Xor) ? color : 0;
+  m_xor = (mode == Xor) ? color : highones;
 }
 
 } // namespace lay
