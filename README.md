@@ -1,11 +1,29 @@
 # Building on macOS
-This fork of https://github.com/klayoutmatthias/klayout is meant to provide a stable build on recent macOS, supported by homebrew. There are three complications to this goal:
 
-* Toolkit: local/qt5 - Homebrew doesn't provide Qt4, only Qt5 and built with clang
+This is a fork of https://github.com/klayoutmatthias/klayout. The
+purpose is to provide a stable build on recent macOS, supported by
+homebrew. There are three complications to this goal:
 
-* Compiler: local/clang - Apple/LLVM clang++ seem to have a sligthly different implementation of the C++ standard
+* Toolkit: local/qt5 - Homebrew doesn't provide Qt4, only Qt5 and
+  built with clang. The default (black) background makes graphics
+  except the grid invisible.  Workaround: select another background
 
-* Application bundle: local/build - Qt5 macdeployqt doesn't quite cut it
+* Compiler: local/clang - Apple/LLVM clang++ seems to work differently
+  from GNU/GCC g++.
+
+  std::iterator_traits<it> requires /all/ five typedefs are
+  consistently defined.
+
+  Different treatment of template instantiation in convenience
+  libraries (weak symbols) causes eg singletons to be
+  duplicated. Workaround: use -fvisibility=default
+
+* Application bundle: local/build - Qt5 macdeployqt doesn't quite cut
+  it.
+
+  Some Qt-frameworks /inside/ the bundle still points to other
+  Qt-frameworks /outside/ the bundle. Workaround: run final fixup of
+  references, see bundle.sh
 
 # klayout
 
