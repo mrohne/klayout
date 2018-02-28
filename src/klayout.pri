@@ -82,6 +82,29 @@ win32 {
   QMAKE_CXXFLAGS += -fvisibility=hidden
 }
 
+osx {
+    # CONFIG += static
+    CONFIG += c++11
+    QMAKE_CXXFLAGS -= -fvisibility=hidden
+    QMAKE_CXXFLAGS += -fvisibility=default
+    LIBS += -framework CoreFoundation
+    # QMAKE_CC                = gcc-7
+    # QMAKE_CXX               = g++-7
+    # QMAKE_CC                = gcc
+    # QMAKE_CXX               = g++
+
+    # QMAKE_CXXFLAGS -= -stdlib=libc++
+    # QMAKE_LFLAGS   -= -stdlib=libc++
+    
+    # QMAKE_CXXFLAGS += -std=gnu++14
+    # QMAKE_LFLAGS   += -std=gnu++14
+
+    # QMAKE_LINK              = $$QMAKE_CXX
+    # QMAKE_LINK_SHLIB        = $$QMAKE_CXX
+    # QMAKE_LINK_C            = $$QMAKE_CC
+    # QMAKE_LINK_C_SHLIB      = $$QMAKE_CC
+}	
+
 VERSION_STRING = $$KLAYOUT_VERSION
 VERSION_STRING_WITH_BLANKS = $$replace(VERSION_STRING, "\\.", " ")
 eval(VERSION_ARRAY = $$VERSION_STRING_WITH_BLANKS)
