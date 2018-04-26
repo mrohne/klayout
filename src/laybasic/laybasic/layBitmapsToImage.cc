@@ -583,10 +583,14 @@ bitmaps_to_image_rgb (const std::vector<lay::ViewOp> &view_ops_in,
       for (unsigned int x = 0; x < width; x += 32, ++i) {
 
         lay::color_t y[32] = {
-          0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0,
+          lay::highones, lay::highones, lay::highones, lay::highones, 
+          lay::highones, lay::highones, lay::highones, lay::highones, 
+          lay::highones, lay::highones, lay::highones, lay::highones, 
+          lay::highones, lay::highones, lay::highones, lay::highones, 
+          lay::highones, lay::highones, lay::highones, lay::highones, 
+          lay::highones, lay::highones, lay::highones, lay::highones, 
+          lay::highones, lay::highones, lay::highones, lay::highones, 
+          lay::highones, lay::highones, lay::highones, lay::highones, 
         };
 
         lay::color_t z[32] = { 

@@ -68,13 +68,14 @@ static std::vector<std::string> query_prop_names (const db::LayoutQuery *q)
 
 struct LayoutQueryIteratorWrapper
 {
-  typedef db::LayoutQueryIterator &reference;
   //  Dummy declarations
-  typedef void iterator_category;
-  typedef void value_type;
-  typedef void difference_type;
-  typedef void pointer;
-
+  typedef db::LayoutQueryIterator result_type;
+  typedef int difference_type;
+  typedef result_type value_type;
+  typedef const result_type& reference;
+  typedef const result_type* pointer;
+  typedef struct std::input_iterator_tag iterator_category;
+  
   LayoutQueryIteratorWrapper (const db::LayoutQuery &q, const db::Layout *layout)
     : mp_iter (new db::LayoutQueryIterator (q, layout))
   {

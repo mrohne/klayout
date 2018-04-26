@@ -98,6 +98,18 @@ namespace DB_HASH_NAMESPACE
       return size_t (__x ^ (__x >> 32));
     }
   };
+#elif defined(__APPLE__)
+  /**
+   *  @brief Specialization missing for long long on WIN64
+   */
+  template<>
+  struct hash<long long>
+  {
+    size_t operator()(long long __x) const
+    {
+      return size_t (__x);
+    }
+  };
 #endif
 
   template <class T>

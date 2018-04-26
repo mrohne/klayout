@@ -443,9 +443,6 @@ Navigator::Navigator (MainWindow *main_window)
 {
   setObjectName (QString::fromUtf8 ("navigator"));
 
-  mp_menu_bar = new QMenuBar (this);
-  mp_menu_bar->setSizePolicy (QSizePolicy::Expanding, QSizePolicy::Preferred);
-
   mp_view = new LayoutView (0, false, mp_main_window, this, "navigator", LayoutView::LV_Naked + LayoutView::LV_NoZoom + LayoutView::LV_NoServices + LayoutView::LV_NoGrid);
   mp_view->setSizePolicy (QSizePolicy::Expanding, QSizePolicy::Expanding);
   mp_view->setMinimumWidth (100);
@@ -459,7 +456,6 @@ Navigator::Navigator (MainWindow *main_window)
   mp_placeholder_label->show ();
 
   QVBoxLayout *layout = new QVBoxLayout (this);
-  layout->addWidget (mp_menu_bar);
   layout->addWidget (mp_view);
   layout->addWidget (mp_placeholder_label);
   layout->setStretchFactor (mp_view, 1);
@@ -526,7 +522,7 @@ Navigator::menu_changed ()
 void 
 Navigator::do_update_menu ()
 {
-  mp_main_window->menu ()->build_detached ("navigator_menu", mp_menu_bar);
+  mp_main_window->menu ()->build_detached ("navigator_menu", mp_main_window->menuBar());
 }
 
 void

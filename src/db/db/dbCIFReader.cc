@@ -338,7 +338,8 @@ CIFReader::read_double ()
   }
 
   double v = 0.0;
-  tl::from_string (m_cmd_buffer, v);
+  try {tl::from_string (m_cmd_buffer, v);}
+  catch (...) { }
   return v;
 }
 
@@ -848,8 +849,17 @@ CIFReader::read_cell (db::Layout &layout, db::Cell &cell, double sf, int level)
             h = read_double ();
           }
 
+	  unsigned int l = layer;
+	  std::string name = read_name ();
+	  if (! name.empty ()) {
+	    std::pair<bool, unsigned int> ll = m_layer_map.logical (name);
+	    if (ll.first) {
+	      l = ll.second;
+	    }
+	  }
+
           db::Text t (text.c_str (), db::Trans (db::Vector (sf * rx, sf * ry)), db::coord_traits <db::Coord>::rounded (h / m_dbu));
-          cell.shapes ((unsigned int) layer).insert (t);
+          cell.shapes ((unsigned int) l).insert (t);
 
         }
 
